@@ -8,6 +8,12 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useParams } from "next/navigation";
 
+export function generateStaticParams() {
+  return nakshatras.map((nakshatra) => ({
+    name: nakshatra.name.toLowerCase().replace(/\s+/g, "-"),
+  }));
+}
+
 export default function NakshatraDetailPage() {
   const params = useParams();
   const nameParam = params.name as string;

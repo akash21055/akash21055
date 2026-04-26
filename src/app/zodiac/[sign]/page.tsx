@@ -3,11 +3,17 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import { getZodiacByName } from "@/lib/zodiacData";
+import { getZodiacByName, zodiacSigns } from "@/lib/zodiacData";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ZodiacIcon from "@/components/ZodiacIcon";
 import { useParams } from "next/navigation";
+
+export function generateStaticParams() {
+  return zodiacSigns.map((sign) => ({
+    sign: sign.name.toLowerCase(),
+  }));
+}
 
 export default function ZodiacSignPage() {
   const params = useParams();
