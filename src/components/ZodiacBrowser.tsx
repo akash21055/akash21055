@@ -23,7 +23,7 @@ export default function ZodiacBrowser() {
       opacity: 1,
       scale: 1,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 120,
         damping: 12,
       },
