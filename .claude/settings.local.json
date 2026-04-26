@@ -37,7 +37,12 @@
       "Bash(git init *)",
       "Bash(git add *)",
       "Bash(git commit *)",
-      "Bash(git config *)"
+      "Bash(git config *)",
+      "Bash(git remote *)",
+      "Bash(git branch *)",
+      "Bash(git push *)",
+      "Bash(ssh-keyscan -H github.com)",
+      "Bash(ssh-keygen -t ed25519 -C \"akash21055@github.com\" -f ~/.ssh/id_ed25519 -N \"\")"
     ]
   }
 }
