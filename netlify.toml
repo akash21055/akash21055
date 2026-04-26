@@ -1,7 +1,6 @@
 [build]
   command = "npm run build"
-  functions = "netlify/functions"
-  publish = ".next"
+  publish = "out"
 
 [[redirects]]
   from = "/*"
@@ -11,12 +10,3 @@
 [dev]
   command = "npm run dev"
   port = 3000
-
-[context.production]
-  command = "npm run build"
-
-[context.deploy-preview]
-  command = "npm run build"
-
-[context.branch-deploy]
-  command = "npm run build"
