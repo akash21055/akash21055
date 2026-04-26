@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(curl -v http://localhost:3000)",
+      "Bash(pkill *)",
+      "PowerShell(Stop-Process *)",
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(curl -s http://localhost:3000/zodiac/aries)",
+      "Bash(curl -s http://localhost:3000/zodiac)",
+      "Bash(curl -s http://localhost:3000/zodiac/gemini)",
+      "Bash(curl -s http://localhost:3000/zodiac/invalid)",
+      "PowerShell(taskkill *)",
+      "Bash(cat)",
+      "Bash(bash /tmp/create_placeholders.sh)",
+      "Bash(curl -s http://localhost:3000/images/zodiac/gemini.svg)",
+      "WebFetch(domain:pngimg.com)",
+      "Bash(bash /tmp/download_zodiac_images.sh)",
+      "WebFetch(domain:www.flaticon.com)",
+      "WebFetch(domain:stock.adobe.com)",
+      "Bash(curl -s http://localhost:3000/images/zodiac/cancer.svg)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/zodiac/cancer)",
+      "Read(//c/Users/Dell/Downloads/zodiac_images/**)",
+      "Bash(cp aeries.png \"/c/Users/Dell/Desktop/astro_app/public/images/zodiac/aries.png\")",
+      "Bash(cp taurus.png \"/c/Users/Dell/Desktop/astro_app/public/images/zodiac/taurus.png\")",
+      "Bash(cp gemini.png \"/c/Users/Dell/Desktop/astro_app/public/images/zodiac/gemini.png\")",
+      "Bash(cp cancer.png \"/c/Users/Dell/Desktop/astro_app/public/images/zodiac/cancer.png\")",
+      "Bash(rm -f *.svg)",
+      "Read(//c/c/Users/Dell/Desktop/astro_app/public/images/**)",
+      "Bash(sed -i 's/\\\\.svg\"/\\\\.png\"/g' src/lib/zodiacData.ts)",
+      "Read(//c/c/Users/Dell/Desktop/astro_app/src/lib/**)",
+      "Bash(curl -s -o /dev/null -w \"Aries: %{http_code}\\\\n\" http://localhost:3000/zodiac/aries)",
+      "Bash(curl -s -o /dev/null -w \"Image: %{http_code}\\\\n\" http://localhost:3000/images/zodiac/aries.png)",
+      "Bash(curl *)",
+      "Bash(netstat -ano)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git config *)"
+    ]
+  }
+}
