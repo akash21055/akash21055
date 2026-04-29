@@ -153,9 +153,12 @@ export default function Navbar() {
         </div>
 
         {/* Desktop CTA */}
-        <Link href="/#consultation" className="hidden md:block">
-          <button className="btn-primary text-sm">Book Reading</button>
-        </Link>
+        <button
+          className="hidden md:block btn-primary text-sm"
+          onClick={() => window.dispatchEvent(new CustomEvent("openConsultation"))}
+        >
+          Book Reading
+        </button>
 
         {/* Mobile hamburger */}
         <button
@@ -269,9 +272,12 @@ export default function Navbar() {
                 FAQ
               </Link>
 
-              <Link href="/#consultation" onClick={closeMobile} className="block pt-4">
-                <button className="btn-primary w-full">Book Reading</button>
-              </Link>
+              <button
+                className="btn-primary w-full mt-4"
+                onClick={() => { closeMobile(); window.dispatchEvent(new CustomEvent("openConsultation")); }}
+              >
+                Book Reading
+              </button>
             </div>
           </motion.div>
         )}

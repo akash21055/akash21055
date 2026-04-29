@@ -8,6 +8,7 @@ import FAQ from "@/components/FAQ";
 import Consultation from "@/components/Consultation";
 import Footer from "@/components/Footer";
 import FloatingCourses from "@/components/FloatingCourses";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 export default function Home() {
   return (
@@ -19,9 +20,10 @@ export default function Home() {
       <HowItWorks />
       <FAQ />
       <Testimonials />
-      <Consultation />
       <Footer />
+      <Consultation />
       <FloatingCourses />
+      <FloatingWhatsApp />
     </main>
   );
 }
