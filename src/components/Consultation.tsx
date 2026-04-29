@@ -2,12 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+import { X, MessageCircle } from "lucide-react";
+
+const WHATSAPP_LINK = "https://chat.whatsapp.com/KjjpQyQCXXNBsdj1mJuQ3G?mode=gi_t";
 
 export default function Consultation() {
   const [formData, setFormData] = useState({
     fullname: "",
-    contactnumber: "",
     birthdate: "",
     birthtime: "",
     birthplace: "",
@@ -37,7 +38,7 @@ export default function Consultation() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!formData.fullname || !formData.contactnumber || !formData.birthdate || !formData.birthtime || !formData.birthplace) {
+    if (!formData.fullname || !formData.birthdate || !formData.birthtime || !formData.birthplace) {
       alert("Please fill in all required fields");
       return;
     }
@@ -46,7 +47,7 @@ export default function Consultation() {
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
-      setFormData({ fullname: "", contactnumber: "", birthdate: "", birthtime: "", birthplace: "", message: "" });
+      setFormData({ fullname: "", birthdate: "", birthtime: "", birthplace: "", message: "" });
     }, 3000);
   };
 
@@ -65,9 +66,18 @@ export default function Consultation() {
             <div className="text-green-700 text-lg font-semibold mb-2">
               ✓ Thank you for your interest!
             </div>
-            <p className="text-slate-800">
-              We'll review your request and contact you shortly to confirm your reading.
+            <p className="text-slate-600 mb-6">
+              We'll review your request shortly. Join our WhatsApp group for faster responses and updates.
             </p>
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold transition-colors"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Join WhatsApp Group
+            </a>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -122,16 +132,16 @@ export default function Consultation() {
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <label className="block text-sm font-medium mb-2 text-slate-900">Contact Number *</label>
-              <input
-                type="tel"
-                name="contactnumber"
-                value={formData.contactnumber}
-                onChange={handleChange}
-                required
-                className="w-full px-4 py-3 bg-white border border-slate-300 rounded-lg focus:outline-none focus:border-red-500 focus:bg-white text-slate-900 transition-all"
-                placeholder="+91 98765 43210"
-              />
+              <label className="block text-sm font-medium mb-2 text-slate-900">Contact via WhatsApp</label>
+              <a
+                href={WHATSAPP_LINK}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 w-full px-4 py-3 rounded-lg bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold transition-colors"
+              >
+                <MessageCircle className="w-5 h-5" />
+                Join our WhatsApp Group
+              </a>
             </motion.div>
 
             <div className="grid md:grid-cols-2 gap-4">
