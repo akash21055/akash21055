@@ -126,24 +126,6 @@ export default function Consultation() {
               />
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-            >
-              <label className="block text-sm font-medium mb-2 text-slate-900">Contact via WhatsApp</label>
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 w-full px-4 py-3 rounded-lg bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold transition-colors"
-              >
-                <MessageCircle className="w-5 h-5" />
-                Join our WhatsApp Group
-              </a>
-            </motion.div>
-
             <div className="grid md:grid-cols-2 gap-4">
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
@@ -235,6 +217,34 @@ export default function Consultation() {
             >
               Request Reading
             </motion.button>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.8 }}
+              className="flex items-center gap-3"
+            >
+              <div className="flex-1 h-px bg-slate-200" />
+              <span className="text-sm text-slate-400">or</span>
+              <div className="flex-1 h-px bg-slate-200" />
+            </motion.div>
+
+            <motion.a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.9 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="flex items-center justify-center gap-3 w-full px-4 py-3 rounded-lg bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold transition-colors"
+            >
+              <MessageCircle className="w-5 h-5" />
+              Contact us on WhatsApp
+            </motion.a>
           </form>
         )}
       </motion.div>
