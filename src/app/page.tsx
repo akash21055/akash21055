@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
 import Consultation from "@/components/Consultation";
 import Footer from "@/components/Footer";
+import FloatingCourses from "@/components/FloatingCourses";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Testimonials />
       <Consultation />
       <Footer />
+      <FloatingCourses />
     </main>
   );
 }

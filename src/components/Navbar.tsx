@@ -7,7 +7,6 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { zodiacSigns } from "@/lib/zodiacData";
 import { nakshatras } from "@/lib/nakshatraData";
-import ZodiacIcon from "@/components/ZodiacIcon";
 
 export default function Navbar() {
   const [zodiacOpen, setZodiacOpen] = useState(false);
@@ -20,16 +19,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setZodiacOpen(false);
       }
-      if (
-        nakshatraRef.current &&
-        !nakshatraRef.current.contains(event.target as Node)
-      ) {
+      if (nakshatraRef.current && !nakshatraRef.current.contains(event.target as Node)) {
         setNakshatraOpen(false);
       }
     };
@@ -39,9 +32,7 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [mobileOpen]);
 
   const closeMobile = () => {
@@ -68,12 +59,6 @@ export default function Navbar() {
         {/* Desktop nav */}
         <div className="hidden md:flex gap-6 lg:gap-8 items-center">
           <Link
-            href="/#services"
-            className="text-slate-800 hover:text-green-600 transition-colors font-medium"
-          >
-            Services
-          </Link>
-          <Link
             href="/#how-it-works"
             className="text-slate-800 hover:text-green-600 transition-colors font-medium"
           >
@@ -86,11 +71,7 @@ export default function Navbar() {
               className="flex items-center gap-1 text-slate-800 hover:text-green-600 transition-colors font-medium"
             >
               Zodiac Signs
-              <ChevronDown
-                className={`w-4 h-4 transition-transform ${
-                  zodiacOpen ? "rotate-180" : ""
-                }`}
-              />
+              <ChevronDown className={`w-4 h-4 transition-transform ${zodiacOpen ? "rotate-180" : ""}`} />
             </button>
 
             <AnimatePresence>
@@ -110,21 +91,11 @@ export default function Navbar() {
                       className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-100 transition-colors group"
                     >
                       <div className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-slate-300">
-                        <Image
-                          src={sign.image}
-                          alt={sign.name}
-                          fill
-                          className="object-cover"
-                          sizes="32px"
-                        />
+                        <Image src={sign.image} alt={sign.name} fill className="object-cover" sizes="32px" />
                       </div>
                       <div className="min-w-0">
-                        <p className="text-sm font-semibold text-slate-900 truncate">
-                          {sign.name}
-                        </p>
-                        <p className="text-xs text-slate-500 truncate">
-                          {sign.dates}
-                        </p>
+                        <p className="text-sm font-semibold text-slate-900 truncate">{sign.name}</p>
+                        <p className="text-xs text-slate-500 truncate">{sign.dates}</p>
                       </div>
                     </Link>
                   ))}
@@ -139,11 +110,7 @@ export default function Navbar() {
               className="flex items-center gap-1 text-slate-800 hover:text-green-600 transition-colors font-medium"
             >
               Nakshatras
-              <ChevronDown
-                className={`w-4 h-4 transition-transform ${
-                  nakshatraOpen ? "rotate-180" : ""
-                }`}
-              />
+              <ChevronDown className={`w-4 h-4 transition-transform ${nakshatraOpen ? "rotate-180" : ""}`} />
             </button>
 
             <AnimatePresence>
@@ -156,26 +123,18 @@ export default function Navbar() {
                   className="absolute top-full right-0 mt-3 w-[520px] bg-white rounded-2xl shadow-2xl border border-slate-200 p-4 grid grid-cols-4 gap-2 max-h-[450px] overflow-y-auto"
                 >
                   {nakshatras.map((nakshatra) => {
-                    const nakshatraSlug = nakshatra.name.toLowerCase().replace(/\s+/g, "-");
+                    const slug = nakshatra.name.toLowerCase().replace(/\s+/g, "-");
                     return (
                       <Link
                         key={nakshatra.id}
-                        href={`/nakshatra/${nakshatraSlug}`}
+                        href={`/nakshatra/${slug}`}
                         onClick={() => setNakshatraOpen(false)}
                         className="flex flex-col items-center justify-center gap-1 px-2 py-3 rounded-lg hover:bg-slate-100 transition-colors group text-center"
                       >
                         <div className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-slate-300">
-                          <Image
-                            src={nakshatra.image}
-                            alt={nakshatra.name}
-                            fill
-                            className="object-cover"
-                            sizes="40px"
-                          />
+                          <Image src={nakshatra.image} alt={nakshatra.name} fill className="object-cover" sizes="40px" />
                         </div>
-                        <p className="text-xs font-semibold text-slate-900 truncate max-w-full">
-                          {nakshatra.name}
-                        </p>
+                        <p className="text-xs font-semibold text-slate-900 truncate max-w-full">{nakshatra.name}</p>
                         <p className="text-xs text-slate-500">#{nakshatra.id}</p>
                       </Link>
                     );
@@ -220,13 +179,6 @@ export default function Navbar() {
           >
             <div className="px-4 py-4 max-h-[calc(100vh-64px)] overflow-y-auto">
               <Link
-                href="/#services"
-                onClick={closeMobile}
-                className="block py-3 text-slate-800 font-medium border-b border-slate-100"
-              >
-                Services
-              </Link>
-              <Link
                 href="/#how-it-works"
                 onClick={closeMobile}
                 className="block py-3 text-slate-800 font-medium border-b border-slate-100"
@@ -239,11 +191,7 @@ export default function Navbar() {
                 className="w-full flex justify-between items-center py-3 text-slate-800 font-medium border-b border-slate-100"
               >
                 Zodiac Signs
-                <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    mobileZodiacOpen ? "rotate-180" : ""
-                  }`}
-                />
+                <ChevronDown className={`w-4 h-4 transition-transform ${mobileZodiacOpen ? "rotate-180" : ""}`} />
               </button>
 
               <AnimatePresence>
@@ -263,21 +211,11 @@ export default function Navbar() {
                         className="flex items-center gap-2 px-3 py-2 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors"
                       >
                         <div className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-slate-300">
-                          <Image
-                            src={sign.image}
-                            alt={sign.name}
-                            fill
-                            className="object-cover"
-                            sizes="32px"
-                          />
+                          <Image src={sign.image} alt={sign.name} fill className="object-cover" sizes="32px" />
                         </div>
                         <div className="min-w-0">
-                          <p className="text-sm font-semibold text-slate-900 truncate">
-                            {sign.name}
-                          </p>
-                          <p className="text-xs text-slate-500 truncate">
-                            {sign.dates}
-                          </p>
+                          <p className="text-sm font-semibold text-slate-900 truncate">{sign.name}</p>
+                          <p className="text-xs text-slate-500 truncate">{sign.dates}</p>
                         </div>
                       </Link>
                     ))}
@@ -290,11 +228,7 @@ export default function Navbar() {
                 className="w-full flex justify-between items-center py-3 text-slate-800 font-medium border-b border-slate-100"
               >
                 Nakshatras
-                <ChevronDown
-                  className={`w-4 h-4 transition-transform ${
-                    mobileNakshatraOpen ? "rotate-180" : ""
-                  }`}
-                />
+                <ChevronDown className={`w-4 h-4 transition-transform ${mobileNakshatraOpen ? "rotate-180" : ""}`} />
               </button>
 
               <AnimatePresence>
@@ -307,26 +241,18 @@ export default function Navbar() {
                     className="overflow-hidden grid grid-cols-3 gap-2 py-3 border-b border-slate-100"
                   >
                     {nakshatras.map((nakshatra) => {
-                      const nakshatraSlug = nakshatra.name.toLowerCase().replace(/\s+/g, "-");
+                      const slug = nakshatra.name.toLowerCase().replace(/\s+/g, "-");
                       return (
                         <Link
                           key={nakshatra.id}
-                          href={`/nakshatra/${nakshatraSlug}`}
+                          href={`/nakshatra/${slug}`}
                           onClick={closeMobile}
                           className="flex flex-col items-center justify-center gap-1 px-2 py-3 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors text-center"
                         >
                           <div className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-slate-300">
-                            <Image
-                              src={nakshatra.image}
-                              alt={nakshatra.name}
-                              fill
-                              className="object-cover"
-                              sizes="32px"
-                            />
+                            <Image src={nakshatra.image} alt={nakshatra.name} fill className="object-cover" sizes="32px" />
                           </div>
-                          <p className="text-xs font-semibold text-slate-900 truncate max-w-full">
-                            {nakshatra.name}
-                          </p>
+                          <p className="text-xs font-semibold text-slate-900 truncate max-w-full">{nakshatra.name}</p>
                           <p className="text-xs text-slate-500">#{nakshatra.id}</p>
                         </Link>
                       );

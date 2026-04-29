@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star, Heart, Compass, Sparkles, Check } from "lucide-react";
+import { Star, Heart, Compass, Check } from "lucide-react";
 
 const services = [
   {
@@ -33,6 +33,11 @@ const services = [
     premium: true,
   },
 ];
+
+function selectService(name: string) {
+  window.dispatchEvent(new CustomEvent("selectService", { detail: name }));
+  document.getElementById("consultation")?.scrollIntoView({ behavior: "smooth" });
+}
 
 export default function Services() {
   return (
@@ -103,8 +108,11 @@ export default function Services() {
                   ))}
                 </div>
 
-                <button className="w-full btn-primary">
-                  {service.premium ? "Get Started" : "Learn More"}
+                <button
+                  className="w-full btn-primary"
+                  onClick={() => selectService(service.title)}
+                >
+                  Select Service
                 </button>
               </motion.div>
             </motion.div>

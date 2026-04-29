@@ -1,7 +1,27 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { GraduationCap, ChevronRight, X } from "lucide-react";
+
+const courses = [
+  {
+    name: "Nakshatra Vastu",
+    subtitle: "KP Astrology + Vastu Mastery",
+    price: "₹51,000",
+    href: "/courses/nakshatra-vastu",
+    bg: "from-purple-600 to-purple-800",
+  },
+  {
+    name: "Advance KP Astrology",
+    subtitle: "66 Classes · 14 Modules",
+    price: "₹1,50,000",
+    href: "/courses/advance-kp",
+    bg: "from-indigo-600 to-indigo-800",
+  },
+];
 
 const particles = Array.from({ length: 20 }, (_, i) => ({
   id: i,
@@ -13,6 +33,8 @@ const particles = Array.from({ length: 20 }, (_, i) => ({
 }));
 
 export default function Hero() {
+  const [coursesOpen, setCoursesOpen] = useState(false);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20 pb-12">
 
@@ -87,13 +109,70 @@ export default function Hero() {
         </motion.p>
 
         <motion.div
-          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-stretch sm:items-center"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <a href="#consultation" className="btn-primary text-center">Book Your Reading</a>
-          <a href="#services" className="btn-secondary text-center">View Services</a>
+          {/* Courses button with bob + popover */}
+          <div className="relative">
+            <motion.button
+              onClick={() => setCoursesOpen(!coursesOpen)}
+              animate={{ y: [0, -6, 0] }}
+              transition={{ y: { duration: 2.4, repeat: Infinity, ease: "easeInOut" } }}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.96 }}
+              className="relative flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold shadow-lg shadow-purple-900/40 border border-white/20"
+            >
+              {coursesOpen ? <X className="w-5 h-5" /> : <GraduationCap className="w-5 h-5" />}
+              Courses
+              {!coursesOpen && (
+                <span className="absolute -top-1.5 -right-1.5 w-2.5 h-2.5 rounded-full bg-orange-400 border-2 border-white/30 animate-pulse" />
+              )}
+            </motion.button>
+
+            <AnimatePresence>
+              {coursesOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 12, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 12, scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                  className="absolute bottom-full right-0 mb-3 w-72 rounded-2xl overflow-hidden shadow-2xl border border-white/10 bg-slate-900 z-20"
+                >
+                  <div className="p-3 flex flex-col gap-2">
+                    {courses.map((c) => (
+                      <Link key={c.name} href={c.href} onClick={() => setCoursesOpen(false)}>
+                        <motion.div
+                          whileHover={{ x: 3 }}
+                          className={`rounded-xl p-4 bg-gradient-to-r ${c.bg} cursor-pointer group`}
+                        >
+                          <div className="flex items-center justify-between mb-1">
+                            <p className="text-white font-bold text-sm">{c.name}</p>
+                            <ChevronRight className="w-4 h-4 text-white/60 group-hover:text-white transition-colors" />
+                          </div>
+                          <p className="text-white/60 text-xs mb-2">{c.subtitle}</p>
+                          <p className="text-white font-black text-lg">{c.price}</p>
+                        </motion.div>
+                      </Link>
+                    ))}
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* View Services with same bob animation */}
+          <motion.a
+            href="#services"
+            animate={{ y: [0, -6, 0] }}
+            transition={{ y: { duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: 1.2 } }}
+            whileHover={{ scale: 1.06 }}
+            whileTap={{ scale: 0.96 }}
+            className="flex items-center gap-2 px-7 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 text-white font-semibold shadow-lg shadow-orange-900/40 border border-white/20"
+          >
+            ✨ View Services
+          </motion.a>
         </motion.div>
 
         <motion.div

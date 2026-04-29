@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 
 export default function Consultation() {
   const [formData, setFormData] = useState({
@@ -14,6 +15,15 @@ export default function Consultation() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [selectedService, setSelectedService] = useState<string | null>(null);
+
+  useEffect(() => {
+    const handler = (e: Event) => {
+      setSelectedService((e as CustomEvent<string>).detail);
+    };
+    window.addEventListener("selectService", handler);
+    return () => window.removeEventListener("selectService", handler);
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -61,6 +71,31 @@ export default function Consultation() {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-6">
+            <AnimatePresence>
+              {selectedService && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8, scale: 0.97 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -8, scale: 0.97 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                  className="flex items-center justify-between gap-3 px-4 py-3 rounded-xl bg-green-50 border border-green-200"
+                >
+                  <div>
+                    <p className="text-xs font-semibold text-green-600 uppercase tracking-wide mb-0.5">Selected Service</p>
+                    <p className="text-sm font-bold text-green-800">{selectedService}</p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedService(null)}
+                    className="text-green-400 hover:text-green-700 transition-colors flex-shrink-0"
+                    aria-label="Remove selected service"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
