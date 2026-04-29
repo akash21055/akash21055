@@ -150,6 +150,12 @@ export default function Navbar() {
           >
             FAQ
           </Link>
+          <Link
+            href="/reviews"
+            className="text-slate-800 hover:text-green-600 transition-colors font-medium"
+          >
+            Reviews
+          </Link>
         </div>
 
         {/* Desktop CTA */}
@@ -270,6 +276,13 @@ export default function Navbar() {
                 className="block py-3 text-slate-800 font-medium border-b border-slate-100"
               >
                 FAQ
+              </Link>
+              <Link
+                href="/reviews"
+                onClick={closeMobile}
+                className="block py-3 text-slate-800 font-medium border-b border-slate-100"
+              >
+                Reviews
               </Link>
 
               <button
